@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplikasi Kriptografi</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+<aside class="sidebar">
+    <div class="logo">
+        <div class="logo-icon">🔐</div>
+        <div><h2>CryptoApp</h2><span>Kriptografi Web</span></div>
+    </div>
+    <nav>
+        <button class="menu-btn active" onclick="showPage('caesar', this)"><span>01</span> Caesar Cipher</button>
+        <button class="menu-btn" onclick="showPage('vigenere', this)"><span>02</span> Vigenère Cipher</button>
+        <button class="menu-btn" onclick="showPage('aes', this)"><span>03</span> AES-256</button>
+        <button class="menu-btn" onclick="showPage('rsa', this)"><span>04</span> RSA-OAEP</button>
+        <button class="menu-btn super" onclick="showPage('super', this)"><span>05</span> Super Enkripsi</button>
+        <button class="menu-btn" onclick="showPage('filecrypto', this)"><span>06</span> Enkripsi File</button>
+        <a href="important_messages.php" class="menu-btn">
+    <span>07</span> Pesan Penting Terenkripsi
+</a>
+
+<a href="steganografi.php" class="menu-btn">
+    <span>08</span> Steganografi Pesan Gambar
+</a>
+
+<a href="blockchain.php" class="menu-btn">
+    <span>09</span> Blockchain
+</a>
+    </nav>
+    <div class="sidebar-footer"><p>Kelompok 3–4 Orang</p><small>Tugas Kriptografi</small></div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+    <div>
+        <h1 id="page-title">Caesar Cipher</h1>
+        <p id="page-description">Algoritma kriptografi klasik berbasis pergeseran karakter.</p>
+    </div>
+    <div class="badge" id="type-badge">KRIPTOGRAFI KLASIK</div>
+</header>
+
+<!-- CAESAR -->
+<section id="caesar" class="page active-page">
+    <div class="info-card">
+        <div class="info-icon">📜</div>
+        <div><h3>Caesar Cipher</h3><p>Setiap huruf digeser berdasarkan nilai key/shift yang diberikan.</p></div>
+    </div>
+    <div class="crypto-grid">
+        <div class="card">
+            <label>Plaintext / Ciphertext</label>
+            <textarea id="caesar-input" placeholder="Masukkan teks..."></textarea>
+            <label>Key / Shift</label>
+            <input type="number" id="caesar-key" value="3" placeholder="Contoh: 3">
+            <div class="button-group">
+                <button class="btn encrypt" onclick="caesarEncrypt()">🔒 Enkripsi</button>
+                <button class="btn decrypt" onclick="caesarDecrypt()">🔓 Dekripsi</button>
+                <button class="btn clear" onclick="clearCaesar()">↻ Reset</button>
+            </div>
+        </div>
+        <div class="card result-card">
+            <label>Hasil</label>
+            <textarea id="caesar-output" readonly placeholder="Hasil akan muncul di sini..."></textarea>
+            <button class="copy-btn" onclick="copyText('caesar-output')">📋 Salin Hasil</button>
+        </div>
+    </div>
+    <div class="process-card">
+        <div class="process-header"><h3>🔎 Proses Algoritma</h3><span>Caesar Cipher</span></div>
+        <div id="caesar-process" class="process-content"><p class="empty-process">Jalankan enkripsi atau dekripsi untuk melihat proses.</p></div>
+    </div>
+</section>
+
+<!-- VIGENERE -->
+<section id="vigenere" class="page">
+    <div class="info-card">
+        <div class="info-icon">🔑</div>
+        <div><h3>Vigenère Cipher</h3><p>Menggunakan kata kunci untuk menentukan pergeseran setiap karakter.</p></div>
+    </div>
+    <div class="crypto-grid">
+        <div class="card">
+            <label>Plaintext / Ciphertext</label>
+            <textarea id="vigenere-input" placeholder="Masukkan teks..."></textarea>
+            <label>Key</label>
+            <input type="text" id="vigenere-key" placeholder="Contoh: KUNCI">
+            <div class="button-group">
+                <button class="btn encrypt" onclick="vigenereEncrypt()">🔒 Enkripsi</button>
+                <button class="btn decrypt" onclick="vigenereDecrypt()">🔓 Dekripsi</button>
+                <button class="btn clear" onclick="clearVigenere()">↻ Reset</button>
+            </div>
+        </div>
+        <div class="card result-card">
+            <label>Hasil</label>
+            <textarea id="vigenere-output" readonly placeholder="Hasil akan muncul di sini..."></textarea>
+            <button class="copy-btn" onclick="copyText('vigenere-output')">📋 Salin Hasil</button>
+        </div>
+    </div>
+    <div class="process-card">
+        <div class="process-header"><h3>🔎 Proses Algoritma</h3><span>Vigenère Cipher</span></div>
+        <div id="vigenere-process" class="process-content"><p class="empty-process">Jalankan enkripsi atau dekripsi untuk melihat proses.</p></div>
+    </div>
+</section>
+
+<!-- AES -->
+<section id="aes" class="page">
+    <div class="info-card modern">
+        <div class="info-icon">🛡️</div>
+        <div><h3>AES-256-GCM</h3><p>Algoritma kriptografi modern menggunakan Advanced Encryption Standard dengan kunci 256-bit.</p></div>
+    </div>
+    <div class="crypto-grid">
+        <div class="card">
+            <label>Plaintext / Ciphertext Base64</label>
+            <textarea id="aes-input" placeholder="Masukkan teks..."></textarea>
+            <label>Password</label>
+            <input type="password" id="aes-key" placeholder="Masukkan password">
+            <div class="button-group">
+                <button class="btn encrypt" onclick="aesEncrypt()">🔒 Enkripsi</button>
+                <button class="btn decrypt" onclick="aesDecrypt()">🔓 Dekripsi</button>
+                <button class="btn clear" onclick="clearAES()">↻ Reset</button>
+            </div>
+        </div>
+        <div class="card result-card">
+            <label>Hasil</label>
+            <textarea id="aes-output" readonly placeholder="Hasil akan muncul di sini..."></textarea>
+            <button class="copy-btn" onclick="copyText('aes-output')">📋 Salin Hasil</button>
+        </div>
+    </div>
+    <div class="process-card">
+        <div class="process-header"><h3>🔎 Proses Algoritma</h3><span>AES-256-GCM</span></div>
+        <div id="aes-process" class="process-content"><p class="empty-process">Jalankan enkripsi atau dekripsi untuk melihat proses.</p></div>
+    </div>
+</section>
+
+<!-- RSA -->
+<section id="rsa" class="page">
+    <div class="info-card modern">
+        <div class="info-icon">🔐</div>
+        <div><h3>RSA-OAEP</h3><p>Algoritma kriptografi modern berbasis pasangan public key dan private key.</p></div>
+    </div>
+    <div class="card rsa-card">
+        <div class="rsa-top">
+            <button class="btn generate" onclick="generateRSAKeys()">⚙️ Generate RSA Key</button>
+            <span id="rsa-status" class="status">Key belum dibuat</span>
+        </div>
+        <label>Plaintext / Ciphertext Base64</label>
+        <textarea id="rsa-input" placeholder="Masukkan teks..."></textarea>
+        <div class="button-group">
+            <button class="btn encrypt" onclick="rsaEncrypt()">🔒 Enkripsi</button>
+            <button class="btn decrypt" onclick="rsaDecrypt()">🔓 Dekripsi</button>
+            <button class="btn clear" onclick="clearRSA()">↻ Reset</button>
+        </div>
+    </div>
+    <div class="key-grid">
+        <div class="key-card"><h3>🔓 Public Key</h3><textarea id="rsa-public" readonly></textarea></div>
+        <div class="key-card"><h3>🔑 Private Key</h3><textarea id="rsa-private" readonly></textarea></div>
+    </div>
+    <div class="process-card">
+        <div class="process-header"><h3>🔎 Proses Algoritma</h3><span>RSA-OAEP</span></div>
+        <div id="rsa-process" class="process-content"><p class="empty-process">Generate key kemudian jalankan enkripsi/dekripsi.</p></div>
+    </div>
+</section>
+
+<!-- SUPER ENKRIPSI -->
+<section id="super" class="page">
+    <div class="info-card super-info">
+        <div class="info-icon">🚀</div>
+        <div><h3>Super Enkripsi</h3><p>Menggabungkan 4 algoritma: Caesar Cipher → Vigenère Cipher → AES-256-GCM → RSA-OAEP.</p></div>
+    </div>
+    <div class="card">
+        <label>Plaintext</label>
+        <textarea id="super-input" placeholder="Masukkan plaintext..."></textarea>
+        <div class="super-key-grid">
+            <div><label>Key Caesar</label><input type="number" id="super-caesar-key" value="3"></div>
+            <div><label>Key Vigenère</label><input type="text" id="super-vigenere-key" value="KUNCI"></div>
+            <div><label>Password AES</label><input type="password" id="super-aes-key" value="password123"></div>
+        </div>
+        <div class="button-group">
+            <button class="btn encrypt big" onclick="superEncrypt()">🚀 Super Enkripsi</button>
+            <button class="btn decrypt big" onclick="superDecrypt()">🔓 Super Dekripsi</button>
+            <button class="btn clear" onclick="clearSuper()">↻ Reset</button>
+        </div>
+    </div>
+    <div class="card result-card">
+        <label>Hasil Super Enkripsi / Dekripsi</label>
+        <textarea id="super-output" readonly placeholder="Hasil akan muncul di sini..."></textarea>
+        <button class="copy-btn" onclick="copyText('super-output')">📋 Salin Hasil</button>
+    </div>
+    <div class="super-process">
+        <div class="step"><div class="step-number">1</div><div><strong>Caesar Cipher</strong><p id="super-step-1">Menunggu...</p></div></div>
+        <div class="arrow">↓</div>
+        <div class="step"><div class="step-number">2</div><div><strong>Vigenère Cipher</strong><p id="super-step-2">Menunggu...</p></div></div>
+        <div class="arrow">↓</div>
+        <div class="step"><div class="step-number">3</div><div><strong>AES-256-GCM</strong><p id="super-step-3">Menunggu...</p></div></div>
+        <div class="arrow">↓</div>
+        <div class="step"><div class="step-number">4</div><div><strong>RSA-OAEP</strong><p id="super-step-4">Menunggu...</p></div></div>
+    </div>
+</section>
+
+
+<!-- ENKRIPSI FILE: AES-CTR + HMAC-SHA256 -->
+<section id="filecrypto" class="page">
+    <div class="info-card modern">
+        <div class="info-icon">📁</div>
+        <div><h3>Enkripsi File</h3><p>File diamankan menggunakan AES-256-CTR dengan autentikasi HMAC-SHA256. Algoritma ini berbeda dari AES-256-GCM pada pesan teks.</p></div>
+    </div>
+    <div class="crypto-grid">
+        <div class="card">
+            <label for="file-encrypt-input">Pilih file yang akan dienkripsi</label>
+            <input type="file" id="file-encrypt-input" style="margin:12px 0;width:100%">
+            <label for="file-encrypt-password">Password enkripsi</label>
+            <input type="password" id="file-encrypt-password" placeholder="Minimal 8 karakter" autocomplete="new-password">
+            <div class="button-group" style="margin-top:18px">
+                <button class="btn encrypt" onclick="encryptSelectedFile()">🔒 Enkripsi & Unduh</button>
+            </div>
+            <p class="file-note">Hasil enkripsi diunduh dengan ekstensi .capp. Simpan password karena tidak dapat dipulihkan.</p>
+        </div>
+        <div class="card">
+            <label for="file-decrypt-input">Pilih file CryptoApp (.capp)</label>
+            <input type="file" id="file-decrypt-input" accept=".capp,application/octet-stream" style="margin:12px 0;width:100%">
+            <label for="file-decrypt-password">Password dekripsi</label>
+            <input type="password" id="file-decrypt-password" placeholder="Masukkan password" autocomplete="current-password">
+            <div class="button-group" style="margin-top:18px">
+                <button class="btn decrypt" onclick="decryptSelectedFile()">🔓 Dekripsi & Unduh</button>
+            </div>
+            <p class="file-note">Integritas file diperiksa dengan HMAC sebelum hasil dekripsi dibuat.</p>
+        </div>
+    </div>
+    <div class="card" style="margin-top:20px">
+        <strong>Status proses</strong>
+        <p id="file-crypto-status" class="file-note" aria-live="polite">Belum ada proses file.</p>
+    </div>
+</section>
+
+</main>
+</div>
+
+<div id="toast" class="toast">Berhasil!</div>
+<script src="script.js"></script>
+</body>
+</html>

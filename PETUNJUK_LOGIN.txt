@@ -1,0 +1,16 @@
+LANJUTAN CRYPTOAPP - LOGIN
+
+1. Pastikan folder ini berada di C:\xampp\htdocs\CryptoApp.
+2. Jalankan Apache dan MySQL di XAMPP.
+3. Pastikan USB terpasang dan file E:\CryptoAppDongle\dongle.key tersedia.
+4. Buka http://localhost/CryptoApp/setup.php
+5. Buat username dan password (minimal 8 karakter). Catat keduanya.
+6. Setelah akun berhasil dibuat, buka http://localhost/CryptoApp/login.php
+7. Login. Jika berhasil, aplikasi algoritma akan terbuka.
+8. Setelah setup selesai, hapus setup.php dari folder proyek atau ubah namanya agar tidak dapat diakses orang lain.
+
+CATATAN PENTING:
+- Password disimpan sebagai hash menggunakan password_hash() dan diverifikasi dengan password_verify(), bukan disimpan sebagai teks biasa.
+- index.php memeriksa dongle dan sesi login sebelum membuka aplikasi.
+- Ini adalah fondasi login berbasis password. Login biometrik WebAuthn/passkey BELUM diimplementasikan; jangan menyatakan fitur biometrik selesai sebelum tahap tersebut dibuat dan diuji.
+- Database default XAMPP: localhost, user root, password kosong. Jika konfigurasi MySQL berbeda, ubah db.php dan setup.php.

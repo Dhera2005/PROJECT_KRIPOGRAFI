@@ -1,0 +1,17 @@
+CRYPTOAPP - PERBAIKAN USB DONGLE
+
+1. Salin seluruh isi folder CryptoApp_fixed ke C:\xampp\htdocs\CryptoApp (timpa file Index.html.html, script.js, dan style.css yang lama setelah membuat cadangan).
+2. Pastikan file kunci berada di E:\CryptoAppDongle\dongle.key dan isinya persis:
+   CRYPTOAPP-DONGLE-SRI-2026-SECURE-KEY-025
+3. Jalankan Apache dari XAMPP.
+4. Buka aplikasi melalui:
+   http://localhost/CryptoApp/index.php
+   Jangan membuka Index.html.html secara langsung karena file HTML statis dapat diakses tanpa pemeriksaan PHP.
+5. Dengan dongle terpasang, halaman aplikasi terbuka. Saat dongle dilepas, pemeriksaan berkala menampilkan layar terkunci dalam sekitar 2 detik.
+6. Tes endpoint:
+   http://localhost/CryptoApp/dongle-check.php
+   Dongle benar: status success. Dongle tidak ada/salah: HTTP 403 dan status error.
+
+CATATAN BATASAN:
+- Ini demonstrasi penguncian berbasis file kunci USB untuk proyek akademik, bukan dongle kriptografis anti-tamper. File HTML lama masih bisa diakses langsung bila URL-nya diketahui; gunakan index.php sebagai alamat aplikasi.
+- Login biometrik sesungguhnya memerlukan WebAuthn dan konfigurasi HTTPS/localhost; penguncian dongle tidak sama dengan autentikasi biometrik.
